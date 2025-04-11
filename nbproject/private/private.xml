@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>ss1306_display.h</url>
+            <bookmark id="1">
+                <name/>
+                <line>21</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/maxymsmal/pic_repo/oled_example.X/ss1306_display.h</file>
+            <file>file:/Users/maxymsmal/pic_repo/oled_example.X/main.c</file>
+            <file>file:/Users/maxymsmal/pic_repo/oled_example.X/ss1306_display.c</file>
+            <file>file:/Users/maxymsmal/pic_repo/oled_example.X/i2c_hw.h</file>
+            <file>file:/Users/maxymsmal/pic_repo/oled_example.X/i2c_hw.c</file>
+        </group>
+    </open-files>
+</project-private>
