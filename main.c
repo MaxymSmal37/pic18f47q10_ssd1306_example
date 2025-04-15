@@ -4,8 +4,10 @@
  *
  * Created on April 9, 2025, 11:25 PM
  */
-#pragma config WDTE = OFF /* WDT operating mode->WDT Disabled */
-#pragma config LVP = ON   /* Low-voltage programming enabled, RE3 pin is MCLR */
+
+// Config bytes
+#pragma config WDTE = OFF
+#pragma config LVP = ON
 
 #include <pic18.h>
 #include <xc.h>
@@ -14,7 +16,29 @@
 
 #define _XTAL_FREQ 32000000UL
 
+void hw_init(void);
+
 void main(void)
+{
+  hw_init();
+ 
+  __delay_ms(100);
+
+  LATEbits.LATE0 = 0;
+
+  ssd1306_InitDisplay();
+
+  LATEbits.LATE0 = 1;
+
+  __delay_ms(100);
+
+  while (1) { 
+    ssd1306_DemoAnimation();
+    __delay_ms(100);
+  }
+}
+
+void hw_init(void)
 {
   OSCCON1bits.NOSC = 0x6;
   OSCFRQbits.FRQ3 = 0x08;
@@ -39,30 +63,9 @@ void main(void)
 
   SSP1DATPPS = 0x0A;
   RB2PPS = 0x10;
-
-  /// Clock = F_OSC / (4 * (SSP1ADD + 1))
-  SSP1CON1bits.SSPM3 = 1;
-
-  // Set the boud rate devider
-  SSP1ADD = 0x9F;
-
-  __delay_ms(100);
-
-  ssd1306_InitDisplay();
-
+  
+  SSP1CON1bits.SSPM3 = 1; /// Clock = F_OSC / (4 * (SSP1ADD + 1))
   LATEbits.LATE0 = 1;
 
-  __delay_ms(100);
-
-  for (int x = 10; x < 100; x++)
-  {
-    for (int y = 10; y < 20; y++)
-    {
-      ssd1306_DrawPixel(x, y, 1);
-    }
-  }
-
-  ssd1306_SetDisplay();
-
-  while (1) { }
+  SSP1ADD = 0x9F;   // Set the boud rate devider
 }
