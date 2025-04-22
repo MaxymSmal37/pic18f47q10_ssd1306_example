@@ -6,8 +6,9 @@
       <itemPath>common_hw.c</itemPath>
     </logicalFolder>
     <logicalFolder name="f1" displayName="Display_SSD1306" projectFiles="true">
-      <itemPath>ss1306_display.h</itemPath>
-      <itemPath>ss1306_display.c</itemPath>
+      <itemPath>ssd1306_font.h</itemPath>
+      <itemPath>ssd1306_display.h</itemPath>
+      <itemPath>ssd1306_display.c</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -40,7 +41,7 @@
         <targetDevice>PIC18F47Q10</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>nEdbgTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.50</languageToolchainVersion>
         <platform>4</platform>
@@ -229,8 +230,24 @@
         <property key="wpo-lto" value="false"/>
       </XC8-config-global>
       <item path="common_hw.c" ex="true" overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-CO>
+        </XC8-CO>
+        <XC8-config-global>
+        </XC8-config-global>
       </item>
       <item path="common_hw.h" ex="true" overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-CO>
+        </XC8-CO>
+        <XC8-config-global>
+        </XC8-config-global>
       </item>
       <nEdbgTool>
         <property key="AutoSelectMemRanges" value="auto"/>

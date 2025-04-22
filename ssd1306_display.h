@@ -25,6 +25,8 @@ void ssd1306_SetInversionMode(uint8_t setInversion);
 void ssd1306_SetEntireMode(uint8_t state);
 
 void ssd1306_SetPixel(int16_t x, int16_t y, uint8_t color);
+void ssd1306_SetCursor(uint8_t x, uint8_t y);
+void ssd1306_SetChar(char c);
 void ssd1306_DemoAnimation(void);
 
 #endif // SS1306_DISPLAY_H

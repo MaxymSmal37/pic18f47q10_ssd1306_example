@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=ss1306_display.c i2c_hw.c main.c
+SOURCEFILES_QUOTED_IF_SPACED=i2c_hw.c main.c ssd1306_display.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/ss1306_display.p1 ${OBJECTDIR}/i2c_hw.p1 ${OBJECTDIR}/main.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/ss1306_display.p1.d ${OBJECTDIR}/i2c_hw.p1.d ${OBJECTDIR}/main.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/i2c_hw.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/ssd1306_display.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/i2c_hw.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/ssd1306_display.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/ss1306_display.p1 ${OBJECTDIR}/i2c_hw.p1 ${OBJECTDIR}/main.p1
+OBJECTFILES=${OBJECTDIR}/i2c_hw.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/ssd1306_display.p1
 
 # Source Files
-SOURCEFILES=ss1306_display.c i2c_hw.c main.c
+SOURCEFILES=i2c_hw.c main.c ssd1306_display.c
 
 
 
@@ -88,14 +88,6 @@ MP_PROCESSOR_OPTION=18F47Q10
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/ss1306_display.p1: ss1306_display.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ss1306_display.p1.d 
-	@${RM} ${OBJECTDIR}/ss1306_display.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ss1306_display.p1 ss1306_display.c 
-	@-${MV} ${OBJECTDIR}/ss1306_display.d ${OBJECTDIR}/ss1306_display.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ss1306_display.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/i2c_hw.p1: i2c_hw.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/i2c_hw.p1.d 
@@ -112,15 +104,15 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-else
-${OBJECTDIR}/ss1306_display.p1: ss1306_display.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/ssd1306_display.p1: ssd1306_display.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ss1306_display.p1.d 
-	@${RM} ${OBJECTDIR}/ss1306_display.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ss1306_display.p1 ss1306_display.c 
-	@-${MV} ${OBJECTDIR}/ss1306_display.d ${OBJECTDIR}/ss1306_display.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/ss1306_display.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/ssd1306_display.p1.d 
+	@${RM} ${OBJECTDIR}/ssd1306_display.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ssd1306_display.p1 ssd1306_display.c 
+	@-${MV} ${OBJECTDIR}/ssd1306_display.d ${OBJECTDIR}/ssd1306_display.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ssd1306_display.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+else
 ${OBJECTDIR}/i2c_hw.p1: i2c_hw.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/i2c_hw.p1.d 
@@ -136,6 +128,14 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/ssd1306_display.p1: ssd1306_display.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ssd1306_display.p1.d 
+	@${RM} ${OBJECTDIR}/ssd1306_display.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/ssd1306_display.p1 ssd1306_display.c 
+	@-${MV} ${OBJECTDIR}/ssd1306_display.d ${OBJECTDIR}/ssd1306_display.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ssd1306_display.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

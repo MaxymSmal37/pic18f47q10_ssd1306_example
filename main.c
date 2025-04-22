@@ -12,7 +12,7 @@
 #include <pic18.h>
 #include <xc.h>
 #include "i2c_hw.h"
-#include "ss1306_display.h"
+#include "ssd1306_display.h"
 
 #define _XTAL_FREQ 32000000UL
 
@@ -34,7 +34,7 @@ void main(void)
 
   while (1) { 
     ssd1306_DemoAnimation();
-    __delay_ms(100);
+    __delay_ms(1000);
   }
 }
 
@@ -42,6 +42,8 @@ void hw_init(void)
 {
   OSCCON1bits.NOSC = 0x6;
   OSCFRQbits.FRQ3 = 0x08;
+ // OSCFRQ = 0x08;
+
 
   ANSELBbits.ANSELB1 = 0;
   ANSELBbits.ANSELB2 = 0;
@@ -67,5 +69,5 @@ void hw_init(void)
   SSP1CON1bits.SSPM3 = 1; /// Clock = F_OSC / (4 * (SSP1ADD + 1))
   LATEbits.LATE0 = 1;
 
-  SSP1ADD = 0x9F;   // Set the boud rate devider
+  SSP1ADD = 0x13;//0x9F;   // Set the boud rate devider
 }

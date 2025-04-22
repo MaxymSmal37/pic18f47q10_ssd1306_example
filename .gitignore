@@ -5,4 +5,5 @@ debug/
 *.log
 *.log.inx
 queuelogs/
-dust/
+dist/
+private/

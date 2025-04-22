@@ -2,11 +2,12 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <string.h>
-#include "ss1306_display.h"
+
+#include "ssd1306_display.h"
 #include "i2c_hw.h"
+#include "ssd1306_font.h"
 
 uint8_t buffer[SSD1306_WIDTH * (SSD1306_HEIGHT / 8)];
-
 
 void ssd1306_InitDisplay(void)
 {
@@ -120,18 +121,18 @@ void ssd1306_SetDisplay_Horisontal(void)
 
 void ssd1306_SetDisplay_Vertical(void)
 {
-    ssd1306_WriteCommand(0x20);                 // Memory Addressing Mode
-    ssd1306_WriteCommand(0x01);                 // Vertical Addressing Mode
+  ssd1306_WriteCommand(0x20);                 // Memory Addressing Mode
+  ssd1306_WriteCommand(0x01);                 // Vertical Addressing Mode
     
-    ssd1306_WriteCommand(0x21);                 // column address
-    ssd1306_WriteCommand(0);                    // Start column
-    ssd1306_WriteCommand(SSD1306_WIDTH - 1);
+  ssd1306_WriteCommand(0x21);                 // column address
+  ssd1306_WriteCommand(0);                    // Start column
+  ssd1306_WriteCommand(SSD1306_WIDTH - 1);
     
-    ssd1306_WriteCommand(0x22); // Set page address
-    ssd1306_WriteCommand(0);    // Start page
-    ssd1306_WriteCommand((SSD1306_HEIGHT / 8) - 1); // End page
+  ssd1306_WriteCommand(0x22); // Set page address
+  ssd1306_WriteCommand(0);    // Start page
+  ssd1306_WriteCommand((SSD1306_HEIGHT / 8) - 1); // End page
 
-    ssd1306_WriteData(buffer, SSD1306_WIDTH * (SSD1306_HEIGHT / 8));
+  ssd1306_WriteData(buffer, SSD1306_WIDTH * (SSD1306_HEIGHT / 8));
 }
 
 void ssd1306_ClearDisplay(void)
@@ -174,22 +175,58 @@ void ssd1306_SetPixel(int16_t x, int16_t y, uint8_t color)
     buffer[byteIndex] &= ~bitMask;
 }
 
-void ssd1306_DemoAnimation(void) {
-    for (int i = 0; i < 120; i += 5)
+void ssd1306_SetCursor(uint8_t x, uint8_t y) {
+  ssd1306_WriteCommand(0x21); // Set column address
+  ssd1306_WriteCommand(x);    // Start column
+  ssd1306_WriteCommand(127);  // End column
+
+  ssd1306_WriteCommand(0x22); // Set page address
+  ssd1306_WriteCommand(y);    // Start page
+  ssd1306_WriteCommand(0x07); // End page
+}
+
+void ssd1306_SetChar(char c) {
+  const uint8_t* charMap = _charASCIIMap[c - 32];
+  uint8_t charBuffer[6];
+  
+  if (c < 32 || c > 126) {
+      c = '?';
+  }
+  
+  for (int i = 0; i < 5; i++) {
+    charBuffer[i] = charMap[i];
+  }
+  charBuffer[5] = 0x00;
+
+  ssd1306_WriteData(charBuffer, sizeof(charBuffer));
+}
+
+void ssd1306_PutString(const char* str) {
+  while (*str) {
+    ssd1306_SetChar(*str++);
+  }
+}
+
+void ssd1306_DemoAnimation(void) {  
+  ssd1306_ClearDisplay();
+
+  for (int i = 0; i < 120; i += 5)
+  {
+    ssd1306_ClearDisplay();
+
+    for (int x = i; x < i + 30 && x < 128; x++)
     {
-        ssd1306_ClearDisplay();
-
-        for (int x = i; x < i + 30 && x < 128; x++)
-        {
-            for (int y = 5; y < 25; y++)
-            {
-                ssd1306_SetPixel(x, y, 1);
-            }
-        }
-
-        ssd1306_SetDisplay();
-        //ssd1306_SetDisplay_Horisontal();
-        //ssd1306_SetDisplay_Vertical();
+      for (int y = 5; y < 25; y++)
+      {
+        ssd1306_SetPixel(x, y, 1);
+      }
     }
+      
+    ssd1306_SetDisplay();
+  }
+  
+  ssd1306_ClearDisplay();         
+  ssd1306_SetCursor(15, 0);
+  ssd1306_PutString("Hello, world!");
 }
 
